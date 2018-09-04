@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/DijkstraScene.unity
+- path: Assets/Scenes/DijkstraScene.unity
   isLoaded: 1
   isActive: 1
