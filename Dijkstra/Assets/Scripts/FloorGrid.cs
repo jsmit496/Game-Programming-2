@@ -41,7 +41,7 @@ public class FloorGrid : MonoBehaviour
             for (int y = 0; y < numTilesHeight; y++)
             {
                 Vector3 gridPoint = new Vector3(gridStart.x + (nodeTileSize * x), gridStart.y, gridStart.z + (nodeTileSize * y));
-                grid[x, y] = new Node(gridPoint, 1, false);
+                grid[x, y] = new Node(gridPoint, false);
             }
         }
 
@@ -52,22 +52,22 @@ public class FloorGrid : MonoBehaviour
             {
                 if (x + 1 <= numTilesWidth - 1 && grid[x + 1, y].nodeBlocked == false)
                 {
-                    grid[x, y].connectedNodes.Add(grid[x + 1, y]);
+                    grid[x, y].connections.Add(grid[x + 1, y], 1);
                     grid[x, y].numConnectedNodes += 1;
                 }
                 if (x - 1 >= 0 && grid[x - 1, y].nodeBlocked == false)
                 {
-                    grid[x, y].connectedNodes.Add(grid[x - 1, y]);
+                    grid[x, y].connections.Add(grid[x - 1, y], 1);
                     grid[x, y].numConnectedNodes += 1;
                 }
                 if (y + 1 <= numTilesHeight - 1 && grid[x, y + 1].nodeBlocked == false)
                 {
-                    grid[x, y].connectedNodes.Add(grid[x, y + 1]);
+                    grid[x, y].connections.Add(grid[x, y + 1], 1);
                     grid[x, y].numConnectedNodes += 1;
                 }
                 if (y - 1 >= 0 && grid[x, y - 1].nodeBlocked == false)
                 {
-                    grid[x, y].connectedNodes.Add(grid[x, y - 1]);
+                    grid[x, y].connections.Add(grid[x, y - 1], 1);
                     grid[x, y].numConnectedNodes += 1;
                 }
                 print("grid[" + x + ", " + y + "] is " + grid[x, y].numConnectedNodes);

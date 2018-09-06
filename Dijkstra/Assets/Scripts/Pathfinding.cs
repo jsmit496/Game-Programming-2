@@ -23,11 +23,17 @@ public class Pathfinding : MonoBehaviour
         Node startNode = grid.ConvertToGridPosition(startPosition);
         Node targetNode = grid.ConvertToGridPosition(targetPosition);
 
-        List<Node> openNodes = new List<Node>();
-        List<Node> closedNodes = new List<Node>();
-        openNodes.Add(startNode);
+        List<Node> wayPoints = new List<Node>();
+        List<Node> openList = new List<Node>();
+        List<Node> closedList = new List<Node>();
+        openList.Add(startNode);
 
-        //Next: start figuring out the path to the target
+        while(openList.Count > 0 && !closedList.Contains(targetNode))
+        {
+            openList.Sort();
+
+        }
         
+
     }
 }
