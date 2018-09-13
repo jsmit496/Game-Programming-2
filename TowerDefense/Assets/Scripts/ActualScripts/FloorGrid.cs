@@ -8,8 +8,8 @@ public class FloorGrid : MonoBehaviour
 {
     public Transform character;
     public Transform target;
-    public float gridWidth = 20;
-    public float gridHeight = 20;
+    public float gridWidth = 15;
+    public float gridHeight = 10;
     public float nodeTileSize = 1;
 
     private int numTilesWidth;
@@ -28,7 +28,7 @@ public class FloorGrid : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-       
+
 	}
 
     public void CreateGrid()
@@ -108,8 +108,6 @@ public class FloorGrid : MonoBehaviour
                 {
                     Gizmos.color = Color.magenta;
                 }
-                Gizmos.DrawCube(n.nodePosition, new Vector3(1, 0.1f, 1) * nodeTileSize);
-                //Gizmos.DrawSphere(n.nodePosition, 0.3f * nodeTileSize);
             }
         }
     }

@@ -318,6 +318,7 @@
     <Compile Include="Assets\Scripts\ActualScripts\FloorGrid.cs" />
     <Compile Include="Assets\Scripts\ActualScripts\Node.cs" />
     <Compile Include="Assets\Scripts\ActualScripts\Pathfinding.cs" />
+    <Compile Include="Assets\Scripts\ActualScripts\PlayerControls.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />

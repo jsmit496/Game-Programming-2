@@ -17,8 +17,15 @@ public class Node
     public Node(Vector3 position, bool blocked, int nodeXPos, int nodeYPos)
     {
         nodePosition = position;
-        //nodeWeight = weight;
         nodeBlocked = blocked;
+        if (nodeBlocked)
+        {
+            weight = 8;
+        }
+        else
+        {
+            weight = 1;
+        }
         PosX = nodeXPos;
         PosY = nodeYPos;
     }

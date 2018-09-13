@@ -6,41 +6,57 @@ public class Pathfinding : MonoBehaviour
 {
     public Transform player;
     public Transform target;
-    public float speed = 0.1f;
+    public float speed = 4.0f;
+    public bool turn = true;
+
+    private bool onlyOnce = true;
+    private int count = 0;
 
     FloorGrid grid;
     List<Node> pathToFollow = new List<Node>();
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         grid = GetComponent<FloorGrid>();
+        count = 0;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (turn == true)
         {
+            onlyOnce = true;
             FindPath(player.position, target.position);
+            turn = false;
+            count = 0;
         }
-        for (int i = 0; i < pathToFollow.Count; i++)
+        if (pathToFollow != null && count < pathToFollow.Count)
         {
-            //Move Character(player)
-            while(player.position != pathToFollow[i].nodePosition)
-            {
-                player.position = Vector3.MoveTowards(player.position, pathToFollow[i].nodePosition, speed * Time.deltaTime);
-            }
+            player.position = Vector3.MoveTowards(player.position, new Vector3(pathToFollow[count].nodePosition.x, 0, pathToFollow[count].nodePosition.z), speed * Time.deltaTime);
         }
-	}
+        if (pathToFollow != null && count < pathToFollow.Count && player.position == new Vector3(pathToFollow[count].nodePosition.x, 0, pathToFollow[count].nodePosition.z))
+        {
+            count++;
+        }
+    }
 
     private void FindPath(Vector3 startPosition, Vector3 targetPosition)
     {
         Node startNode = grid.ConvertToGridPosition(startPosition);
         Node targetNode = grid.ConvertToGridPosition(targetPosition);
 
+        if (onlyOnce)
+        {
+            pathToFollow = new List<Node>();
+            onlyOnce = false;
+        }
+
         List<Node> openList = new List<Node>();
         List<Node> closedList = new List<Node>();
+        print("The start of the open list count: " + openList.Count);
+        print("The start of the closed list count: " + closedList.Count);
         openList.Add(startNode);
 
         while(openList.Count > 0)
@@ -71,16 +87,14 @@ public class Pathfinding : MonoBehaviour
                     //Do Nothing
                     continue;
                 }
-                print("connectedNodes = " + connectedNodes.nodePosition);
-                print("currentNode = " + currentNode.nodePosition);
-                print(GetDistance(currentNode, targetNode));
-                print(GetDistance(connectedNodes, targetNode));
-                int oldWeightForConnection = GetDistance(currentNode, targetNode);
-                int newWeightForConnection = GetDistance(connectedNodes, targetNode);
+                float oldDistance = Vector3.Distance(currentNode.nodePosition, targetNode.nodePosition);
+                float newDistance = Vector3.Distance(connectedNodes.nodePosition, targetNode.nodePosition);
+                //int oldWeightForConnection = GetDistance(currentNode, targetNode);
+                //int newWeightForConnection = GetDistance(connectedNodes, targetNode);
 
-                if (newWeightForConnection > oldWeightForConnection && !openList.Contains(connectedNodes))
+                if (newDistance < oldDistance && !openList.Contains(connectedNodes))
                 {
-                    connectedNodes.weight = newWeightForConnection;
+                    connectedNodes.weight = currentNode.weight + connectedNodes.weight;
                     connectedNodes.parent = currentNode;
 
                     if (!openList.Contains(connectedNodes))
@@ -100,9 +114,6 @@ public class Pathfinding : MonoBehaviour
         while (currentNode != startNode)
         {
             path.Add(currentNode);
-            print("targetNode = " + targetNode.nodePosition);
-            print("currentNode.parent = " + currentNode.parent.nodePosition);
-            print("currentNode = " + currentNode.nodePosition);
             currentNode = currentNode.parent;
         }
         path.Reverse();
@@ -113,21 +124,6 @@ public class Pathfinding : MonoBehaviour
         for (int i = 0; i < pathToFollow.Count; i++)
         {
             print("node: " + i + " = " + pathToFollow[i].nodePosition);
-        }
-    }
-
-    int GetDistance(Node nodeA, Node NodeB)
-    {
-        int distanceX = Mathf.Abs(nodeA.PosX - NodeB.PosY);
-        int distanceY = Mathf.Abs(nodeA.PosY - NodeB.PosX);
-
-        if (distanceX > distanceY)
-        {
-            return 14 * distanceY + 10 * (distanceX - distanceY);
-        }
-        else
-        {
-            return 14 * distanceX + 10 * (distanceY - distanceX);
         }
     }
 }
