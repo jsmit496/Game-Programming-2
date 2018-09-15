@@ -8,17 +8,19 @@ public class Pathfinding : MonoBehaviour
     public Transform target;
     public float speed = 4.0f;
     public bool turn = true;
+    public int maxEnergy = 100;
+    public int energy = 8;
 
     private bool onlyOnce = true;
     private int count = 0;
 
-    FloorGrid grid;
+    public FloorGrid grid;
+    public PlayerControls playerControls;
     List<Node> pathToFollow = new List<Node>();
 
     // Use this for initialization
     void Start ()
     {
-        grid = GetComponent<FloorGrid>();
         count = 0;
 	}
 	
@@ -29,16 +31,22 @@ public class Pathfinding : MonoBehaviour
         {
             onlyOnce = true;
             FindPath(player.position, target.position);
+            energy = maxEnergy;
             turn = false;
             count = 0;
         }
-        if (pathToFollow != null && count < pathToFollow.Count)
+        if (pathToFollow != null && count < pathToFollow.Count && energy > 0)
         {
             player.position = Vector3.MoveTowards(player.position, new Vector3(pathToFollow[count].nodePosition.x, 0, pathToFollow[count].nodePosition.z), speed * Time.deltaTime);
         }
-        if (pathToFollow != null && count < pathToFollow.Count && player.position == new Vector3(pathToFollow[count].nodePosition.x, 0, pathToFollow[count].nodePosition.z))
+        if (pathToFollow != null && count < pathToFollow.Count && player.position == new Vector3(pathToFollow[count].nodePosition.x, 0, pathToFollow[count].nodePosition.z) && energy > 0)
         {
+            energy -= pathToFollow[count].weight;
             count++;
+        }
+        if (player.position == target.position && energy > 0)
+        {
+            playerControls.health -= energy;
         }
     }
 
@@ -89,17 +97,18 @@ public class Pathfinding : MonoBehaviour
                 }
                 float oldDistance = Vector3.Distance(currentNode.nodePosition, targetNode.nodePosition);
                 float newDistance = Vector3.Distance(connectedNodes.nodePosition, targetNode.nodePosition);
-                //int oldWeightForConnection = GetDistance(currentNode, targetNode);
-                //int newWeightForConnection = GetDistance(connectedNodes, targetNode);
 
-                if (newDistance < oldDistance && !openList.Contains(connectedNodes))
+                if (!openList.Contains(connectedNodes) && connectedNodes.nodeBlocked == false)
                 {
-                    connectedNodes.weight = currentNode.weight + connectedNodes.weight;
-                    connectedNodes.parent = currentNode;
-
-                    if (!openList.Contains(connectedNodes))
+                    if (newDistance < oldDistance)
                     {
-                        openList.Add(connectedNodes);
+                        connectedNodes.weight = currentNode.weight;
+                        connectedNodes.parent = currentNode;
+
+                        if (!openList.Contains(connectedNodes))
+                        {
+                            openList.Add(connectedNodes);
+                        }
                     }
                 }
             }

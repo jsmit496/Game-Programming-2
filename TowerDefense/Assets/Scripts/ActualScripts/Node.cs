@@ -10,7 +10,6 @@ public class Node
     public List<Node> connections = new List<Node>();
     public int PosX;
     public int PosY;
-    //public Dictionary<Node, float> connections = new Dictionary<Node, float>();
     public int numConnectedNodes = 0;
     public Node parent;
 
