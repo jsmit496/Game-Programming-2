@@ -10,18 +10,21 @@ public class Pathfinding : MonoBehaviour
     public bool turn = true;
     public int maxEnergy = 100;
     public int energy = 8;
+    public Vector3 startPosition;
+    public bool hasRespawn = false;
 
     private bool onlyOnce = true;
     private int count = 0;
 
     public FloorGrid grid;
     public PlayerControls playerControls;
-    List<Node> pathToFollow = new List<Node>();
+    public List<Node> pathToFollow = new List<Node>();
 
     // Use this for initialization
     void Start ()
     {
         count = 0;
+        startPosition = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -41,7 +44,14 @@ public class Pathfinding : MonoBehaviour
         }
         if (pathToFollow != null && count < pathToFollow.Count && player.position == new Vector3(pathToFollow[count].nodePosition.x, 0, pathToFollow[count].nodePosition.z) && energy > 0)
         {
-            energy -= pathToFollow[count].weight;
+            if(pathToFollow[count].nodeBlocked == true)
+            {
+                energy -= 8;
+            }
+            else
+            {
+                energy -= 1;
+            }
             count++;
         }
         if (player.position == target.position && energy > 0)
@@ -90,7 +100,7 @@ public class Pathfinding : MonoBehaviour
 
             foreach(Node connectedNodes in currentNode.connections)
             {
-                if (connectedNodes.nodeBlocked || closedList.Contains(connectedNodes))
+                if (closedList.Contains(connectedNodes))
                 {
                     //Do Nothing
                     continue;
@@ -98,7 +108,7 @@ public class Pathfinding : MonoBehaviour
                 float oldDistance = Vector3.Distance(currentNode.nodePosition, targetNode.nodePosition);
                 float newDistance = Vector3.Distance(connectedNodes.nodePosition, targetNode.nodePosition);
 
-                if (!openList.Contains(connectedNodes) && connectedNodes.nodeBlocked == false)
+                if (!openList.Contains(connectedNodes))
                 {
                     if (newDistance < oldDistance)
                     {
@@ -133,6 +143,17 @@ public class Pathfinding : MonoBehaviour
         for (int i = 0; i < pathToFollow.Count; i++)
         {
             print("node: " + i + " = " + pathToFollow[i].nodePosition);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (energy > 0)
+        {
+            if (collision.collider.tag == "wall")
+            {
+                Destroy(collision.gameObject);
+            }
         }
     }
 }

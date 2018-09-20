@@ -104,6 +104,10 @@ public class FloorGrid : MonoBehaviour
                 {
                     grid[x, y].nodeBlocked = true;
                 }
+                else
+                {
+                    grid[x, y].nodeBlocked = false;
+                }
             }
         }
     }
@@ -140,10 +144,13 @@ public class FloorGrid : MonoBehaviour
                 }
                 Gizmos.DrawCube(n.nodePosition, new Vector3(nodeTileSize - 0.1f,0.1f,nodeTileSize-0.1f));
             }
-            foreach (Node n in path)
+            if (path != null)
             {
-                Gizmos.color = Color.black;
-                Gizmos.DrawCube(n.nodePosition, new Vector3(nodeTileSize-0.1f, 0.1f, nodeTileSize-0.1f));
+                foreach (Node n in path)
+                {
+                    Gizmos.color = Color.black;
+                    Gizmos.DrawCube(n.nodePosition, new Vector3(nodeTileSize - 0.1f, 0.1f, nodeTileSize - 0.1f));
+                }
             }
         }
     }

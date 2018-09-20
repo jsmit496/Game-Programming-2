@@ -282,6 +282,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\DestroyWall.cs" />
+    <Compile Include="Assets\EnemySpawn.cs" />
+    <Compile Include="Assets\MainMenu.cs" />
     <Compile Include="Assets\Scripts\ActualScripts\FloorGrid.cs" />
     <Compile Include="Assets\Scripts\ActualScripts\Node.cs" />
     <Compile Include="Assets\Scripts\ActualScripts\Pathfinding.cs" />
