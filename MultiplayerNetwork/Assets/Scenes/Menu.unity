@@ -443,7 +443,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.InputField+OnChangeEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_CaretColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
@@ -563,8 +574,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 415619167}
-        m_MethodName: HostGame
+      - m_Target: {fileID: 415619165}
+        m_MethodName: SetupHost
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -619,7 +630,6 @@ GameObject:
   m_Component:
   - component: {fileID: 415619166}
   - component: {fileID: 415619165}
-  - component: {fileID: 415619167}
   m_Layer: 0
   m_Name: HandleNetwork
   m_TagString: Untagged
@@ -635,7 +645,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 415619164}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -822479833, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 67c396323de7ea64b846765d1e32f143, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -711,6 +721,9 @@ MonoBehaviour:
   matchSize: 4
   isNetworkActive: 0
   matchMaker: {fileID: 0}
+  playerName: 
+  joinGameText: {fileID: 670049843}
+  playerNameText: {fileID: 1746285244}
 --- !u!4 &415619166
 Transform:
   m_ObjectHideFlags: 0
@@ -724,19 +737,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &415619167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 415619164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c396323de7ea64b846765d1e32f143, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  joinGameText: {fileID: 670049843}
-  playerNameText: {fileID: 1746285244}
 --- !u!1 &500944609
 GameObject:
   m_ObjectHideFlags: 0
@@ -748,7 +748,7 @@ GameObject:
   - component: {fileID: 500944612}
   - component: {fileID: 500944611}
   m_Layer: 5
-  m_Name: UI Background
+  m_Name: Host Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,7 +896,7 @@ GameObject:
   - component: {fileID: 640649412}
   - component: {fileID: 640649411}
   m_Layer: 5
-  m_Name: UI Background
+  m_Name: JoinGame Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1258,8 +1258,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 415619167}
-        m_MethodName: JoinGame
+      - m_Target: {fileID: 415619165}
+        m_MethodName: SetupClient
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1959,7 +1959,7 @@ GameObject:
   - component: {fileID: 1962006507}
   - component: {fileID: 1962006506}
   m_Layer: 5
-  m_Name: UI Background
+  m_Name: PlayerName Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
