@@ -61,19 +61,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ChatController.cs" />
     <Compile Include="Assets\HandleMultiplePlayer.cs" />
+    <Compile Include="Assets\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\ChatHandler.cs" />
     <Compile Include="Assets\Scripts\NetworkHandler.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/svc-student/Documents/dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/svc-student/Documents/dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/svc-student/Documents/dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/svc-student/Documents/dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

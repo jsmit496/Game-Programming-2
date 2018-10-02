@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ChatHandler : MonoBehaviour
 {
+    public string chatType = "General Chat";
     public List<string> messages = new List<string>();
 
     public GameObject chatController;
+    public GameObject chatToggle;
 
     private Dictionary<int, string> namesByConnectionId = new Dictionary<int, string>();
     private Dictionary<string, int> connectionIdsByName = new Dictionary<string, int>();
@@ -16,7 +18,7 @@ public class ChatHandler : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-		
+        ChatController chatControl = chatController.GetComponent<ChatController>();
 	}
 	
 	// Update is called once per frame
@@ -24,20 +26,20 @@ public class ChatHandler : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            if (chatController.activeSelf == true)
+            if (chatToggle.activeSelf == true)
             {
-                chatController.SetActive(false);
+                chatToggle.SetActive(false);
             }
-            else if (chatController.activeSelf == false)
+            else if (chatToggle.activeSelf == false)
             {
-                chatController.SetActive(true);
+                chatToggle.SetActive(true);
             }
         }
     }
 
     public void OnChatMessageReceived(string sender, string message)
     {
-        messages.Add(string.Format("[User chat] {0}: {1}", sender, message));
+        messages.Add(string.Format("[{0}] {1}: {2}", chatType, sender, message));
     }
 
     public string GetNameByConnectionId(int connectionId)

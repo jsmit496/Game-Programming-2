@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
         characterController.SimpleMove(moveDirection.normalized * speed);
 
         float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        //float mouseY = Input.GetAxis("Mouse Y");
 
         if (mouseX > 0)
         {
