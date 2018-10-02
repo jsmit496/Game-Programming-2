@@ -303,7 +303,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ChatController.cs" />
     <Compile Include="Assets\HandleMultiplePlayer.cs" />
+    <Compile Include="Assets\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\ChatHandler.cs" />
     <Compile Include="Assets\Scripts\NetworkHandler.cs" />
   </ItemGroup>
   <ItemGroup>
