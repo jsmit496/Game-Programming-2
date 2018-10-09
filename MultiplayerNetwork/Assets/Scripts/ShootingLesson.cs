@@ -41,11 +41,15 @@ public class ShootingLesson : NetworkBehaviour
         NetworkServer.Spawn(newBullet);
     }
 
-    //Will execute on the client
+    //Will execute on all clients
     [ClientRpc]
     void RpcShowHit()
     {
-        print("I got hit!");
+        //use this to apply on only the local client instead of all
+        if (isLocalPlayer)
+        {
+            print("I got hit!");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -58,6 +62,8 @@ public class ShootingLesson : NetworkBehaviour
 
         if (collision.gameObject.tag == "Bullet")
         {
+            ShootingLesson shooter = collision.gameObject.GetComponent<BulletController>().owningPlayer;
+            shooter.GetComponent<PlayerScore>().Score++;
             RpcShowHit();
         }
     }

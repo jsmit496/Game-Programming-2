@@ -61,13 +61,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BulletController.cs" />
     <Compile Include="Assets\ChatController.cs" />
+    <Compile Include="Assets\DetermineSpawn.cs" />
     <Compile Include="Assets\HandleMultiplePlayer.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\ChatHandler.cs" />
     <Compile Include="Assets\Scripts\NetworkHandler.cs" />
+    <Compile Include="Assets\Scripts\PlayerScore.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\ShootingLesson.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\TestShootnig.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

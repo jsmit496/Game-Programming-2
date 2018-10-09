@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float maxAngle = 90f;
 
     public GameObject playerCamera;
+
     private CharacterController characterController;
+    private CursorLockMode cursorMode;
 
 	// Use this for initialization
 	void Start ()
@@ -47,20 +49,33 @@ public class PlayerMovement : MonoBehaviour
         characterController.SimpleMove(moveDirection.normalized * speed);
 
         float mouseX = Input.GetAxis("Mouse X");
-        //float mouseY = Input.GetAxis("Mouse Y");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        if (mouseX > 0)
+        if (mouseX > 0 || mouseY > 0)
         {
             transform.Rotate(Vector3.up, mouseX * motionScale * Time.deltaTime, Space.World);
+
+            CameraUpDownMovement();
         }
-        if (mouseX < 0)
+        if (mouseX < 0 || mouseY < 0)
         {
             transform.Rotate(Vector3.down, -mouseX * motionScale * Time.deltaTime, Space.World);
+
+            CameraUpDownMovement();
         }
-        /*
+
+        //Quaternion playerRotation = transform.rotation;
+        //playerRotation.y = playerCamera.transform.rotation.y;
+        //transform.rotation = playerRotation;
+    }
+
+    public void CameraUpDownMovement()
+    {
+        float mouseY = Input.GetAxis("Mouse Y");
+
         if (mouseY > 0)
         {
-            playerCamera.transform.Rotate(-transform.right, motionScale * Time.deltaTime, Space.World);
+            playerCamera.transform.Rotate(-transform.right, mouseY * motionScale * Time.deltaTime, Space.World);
 
             if (Vector3.Angle(transform.forward, playerCamera.transform.forward) > maxAngle)
             {
@@ -70,17 +85,13 @@ public class PlayerMovement : MonoBehaviour
         }
         if (mouseY < 0)
         {
-            playerCamera.transform.Rotate(transform.right, motionScale * Time.deltaTime, Space.World);
+            playerCamera.transform.Rotate(transform.right, -mouseY * motionScale * Time.deltaTime, Space.World);
 
             if (Vector3.Angle(transform.forward, playerCamera.transform.forward) > maxAngle)
             {
                 playerCamera.transform.forward = transform.forward;
                 playerCamera.transform.Rotate(transform.right, maxAngle, Space.World);
             }
-        }*/
-
-        Quaternion playerRotation = transform.rotation;
-        playerRotation.y = playerCamera.transform.rotation.y;
-        transform.rotation = playerRotation;
+        }
     }
 }
