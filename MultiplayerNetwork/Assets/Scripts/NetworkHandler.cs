@@ -62,7 +62,7 @@ public class NetworkHandler : NetworkManager
         RegisterClientListeners();
     }
 
-    //Handle Conect/Join
+    //Handle Connect/Join
     public override void OnClientConnect(NetworkConnection netConnect)
     {
         //When client connects: set the chat

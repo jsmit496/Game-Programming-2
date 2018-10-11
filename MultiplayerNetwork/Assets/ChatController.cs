@@ -57,7 +57,7 @@ public class ChatController : MonoBehaviour {
 
     public void HandleScrollbar()
     {
-        //As messages the number of messages increase change the scrollbar size so that it matches with the size you can see in regards to what you cant
+        //As messages the number of messages increase change the scrollbar size so that it matches with the size you can see in regard to what you cant
         if (chatHandler.messages.Count <= 5)
         {
             scrollbarSize = 1;

@@ -7,7 +7,9 @@ public class DetermineSpawn : MonoBehaviour
     public string weapon;
     public float waitSpawn = 10f;
 
+    [SerializeField]
     private float waitSpawnCount = 0;
+
     private bool canSpawn = true;
 
 	// Use this for initialization
@@ -19,7 +21,7 @@ public class DetermineSpawn : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-
+        HandleSpawnWeapon();
 	}
 
     //NOTE: This will change the spawn every 10 seconds until it is changed to spawn when item is missing

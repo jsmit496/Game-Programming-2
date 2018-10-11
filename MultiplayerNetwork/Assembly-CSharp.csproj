@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\PlayerScore.cs" />
     <Compile Include="Assets\Scripts\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\ShootingLesson.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\TestMaterial.cs" />
     <Compile Include="Assets\Scripts\TestScripts\TestShootnig.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/MultiplayerNetwork/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
