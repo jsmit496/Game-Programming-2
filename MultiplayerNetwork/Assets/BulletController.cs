@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public ShootingLesson owningPlayer;
+    public PlayerShoot owningPlayer;
 
 	// Use this for initialization
 	void Start ()

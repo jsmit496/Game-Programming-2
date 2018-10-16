@@ -303,11 +303,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BulletController.cs" />
     <Compile Include="Assets\ChatController.cs" />
+    <Compile Include="Assets\DetermineSpawn.cs" />
     <Compile Include="Assets\HandleMultiplePlayer.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\ChatHandler.cs" />
     <Compile Include="Assets\Scripts\NetworkHandler.cs" />
+    <Compile Include="Assets\Scripts\PlayerScore.cs" />
+    <Compile Include="Assets\Scripts\PlayerShoot.cs" />
+    <Compile Include="Assets\Scripts\ScoreboardController.cs" />
+    <Compile Include="Assets\Scripts\TestScripts\TestMaterial.cs" />
+    <Compile Include="Assets\ShowIPAddress.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />

@@ -13,7 +13,7 @@ public class ChatHandler : MonoBehaviour
     private Dictionary<int, string> namesByConnectionId = new Dictionary<int, string>();
     private Dictionary<string, int> connectionIdsByName = new Dictionary<string, int>();
 
-    private string localPlayerName;
+    public string localPlayerName;
 
 	// Use this for initialization
 	void Start ()

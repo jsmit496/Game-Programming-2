@@ -713,6 +713,8 @@ MonoBehaviour:
   matchMaker: {fileID: 0}
   joinGameText: {fileID: 670049843}
   playerNameText: {fileID: 1746285244}
+  isServer: 0
+  serverIP: 
 --- !u!4 &415619166
 Transform:
   m_ObjectHideFlags: 0
