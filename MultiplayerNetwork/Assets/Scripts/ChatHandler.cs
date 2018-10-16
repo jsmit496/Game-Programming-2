@@ -14,6 +14,7 @@ public class ChatHandler : MonoBehaviour
     private Dictionary<string, int> connectionIdsByName = new Dictionary<string, int>();
 
     public string localPlayerName;
+    public string localColorName;
 
 	// Use this for initialization
 	void Start ()
@@ -39,7 +40,7 @@ public class ChatHandler : MonoBehaviour
 
     public void OnChatMessageReceived(string sender, string message)
     {
-        messages.Add(string.Format("[{0}] {1}: {2}", chatType, sender, message));
+        messages.Add(string.Format("[{0}] {1}({2}): {3}", chatType, sender, localColorName, message));
     }
 
     public string GetNameByConnectionId(int connectionId)
@@ -50,6 +51,11 @@ public class ChatHandler : MonoBehaviour
     public void SetLocalPlayerName(string playerName)
     {
         localPlayerName = playerName;
+    }
+
+    public void SetLocalColorName(string colorName)
+    {
+        localColorName = colorName;
     }
 
     public void AnnouncePlayer(string playerName)

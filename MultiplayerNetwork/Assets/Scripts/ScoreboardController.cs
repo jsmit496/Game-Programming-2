@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreboardController : MonoBehaviour
 {
+    
 
 	// Use this for initialization
 	void Start ()

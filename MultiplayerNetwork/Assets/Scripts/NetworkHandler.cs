@@ -15,12 +15,12 @@ public class NetworkHandler : NetworkManager
     private string playerName;
     private ChatHandler chatHandler;
     private ScoreboardController scoreboardController;
+    public bool playerJoined = false;
 
     internal void RegisterScoreboard(ScoreboardController scoreBoard)
     {
         scoreboardController = scoreBoard;
     }
-
 
     public class ChatMessage : MessageBase
     {
@@ -55,7 +55,6 @@ public class NetworkHandler : NetworkManager
         {
             playerName = "PlayerWithNoName";
         }
-        
 	}
 
     //Setup for Host/Client
@@ -82,6 +81,13 @@ public class NetworkHandler : NetworkManager
         }
     }
 
+    public void ShutItDown()
+    {
+        StopClient();
+        StopHost();
+        StopServer();
+    }
+
     //Handle Connect/Join
     public override void OnClientConnect(NetworkConnection netConnect)
     {
@@ -89,6 +95,7 @@ public class NetworkHandler : NetworkManager
         chatHandler = GameObject.FindGameObjectWithTag("ChatSystem").GetComponent<ChatHandler>();
         client.Send(2001, new StringMessage(playerName));
         isServer = false;
+        playerJoined = true;
     }
 
     public override void OnStartServer()
