@@ -308,6 +308,7 @@
     <Compile Include="Assets\Scripts\GlowScripts\GlowComposite.cs" />
     <Compile Include="Assets\Scripts\GlowScripts\GlowObject.cs" />
     <Compile Include="Assets\Scripts\GlowScripts\GlowPrePass.cs" />
+    <Compile Include="Assets\Scripts\InspectItems.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
   </ItemGroup>
   <ItemGroup>
