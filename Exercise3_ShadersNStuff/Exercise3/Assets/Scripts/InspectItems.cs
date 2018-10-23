@@ -18,7 +18,6 @@ public class InspectItems : MonoBehaviour
     private bool canPickup = false;
     private bool moveObject = false;
     private bool resetRotation = false;
-    private bool moveObjectBack = false;
 
     private PlayerMovement playerMovement;
     private GameObject itemToPickup;
@@ -27,6 +26,8 @@ public class InspectItems : MonoBehaviour
     private Quaternion itemToPickupRotation;
     private Vector3 itemToPickupPosition;
     private Vector3 itemToPickupScale;
+
+    private ResetObject resetObject;
 
 	// Use this for initialization
 	void Start ()
@@ -57,6 +58,7 @@ public class InspectItems : MonoBehaviour
                 //Display the "Press E to pick up"
                 canPickup = true;
                 itemToPickup = hit.transform.gameObject;
+                resetObject = itemToPickup.GetComponent<ResetObject>();
             }
             else
             {
@@ -75,16 +77,13 @@ public class InspectItems : MonoBehaviour
             {
                 moveObject = true;
                 playerMovement.enabled = false;
-                moveObjectBack = false;
-                itemToPickupPosition = itemToPickup.transform.position;
-                itemToPickupRotation = itemToPickup.transform.rotation;
-                itemToPickupScale = itemToPickup.transform.localScale;
+                resetObject.reset = false;
             }
             else if (moveObject)
             {
                 moveObject = false;
                 playerMovement.enabled = true;
-                moveObjectBack = true;
+                resetObject.reset = true;
                 canPickup = false;
             }
         }
@@ -95,17 +94,6 @@ public class InspectItems : MonoBehaviour
 
             itemToPickup.transform.localScale = Vector3.Lerp(itemToPickup.transform.localScale, new Vector3(targetScale, targetScale, targetScale), shrinkSpeed * Time.deltaTime);
             itemToPickup.transform.position = Vector3.Lerp(itemToPickup.transform.position, itemScreenPosition, itemMovementSpeed * Time.deltaTime);
-        }
-
-        if (moveObjectBack)
-        {
-            itemToPickup.transform.localScale = Vector3.Lerp(itemToPickup.transform.localScale, itemToPickupScale, shrinkSpeed * Time.deltaTime);
-            itemToPickup.transform.position = Vector3.Lerp(itemToPickup.transform.position, itemToPickupPosition, itemMovementSpeed * Time.deltaTime);
-            itemToPickup.transform.rotation = Quaternion.Lerp(itemToPickup.transform.rotation, itemToPickupRotation, resetRotationSpeed * Time.deltaTime);
-            if (itemToPickup.transform.localScale == itemToPickupScale && itemToPickup.transform.position == itemToPickupPosition && itemToPickup.transform.rotation == itemToPickupRotation)
-            {
-                moveObjectBack = false;
-            }
         }
     }
 
@@ -133,8 +121,8 @@ public class InspectItems : MonoBehaviour
 
         if (resetRotation == true)
         {
-            itemToPickup.transform.rotation = Quaternion.Lerp(itemToPickup.transform.rotation, itemToPickupRotation, resetRotationSpeed * Time.deltaTime);
-            if (itemToPickup.transform.rotation == itemToPickupRotation)
+            itemToPickup.transform.rotation = Quaternion.Lerp(itemToPickup.transform.rotation, resetObject.originalRotation, resetRotationSpeed * Time.deltaTime);
+            if (itemToPickup.transform.rotation == resetObject.originalRotation)
             {
                 resetRotation = false;
             }

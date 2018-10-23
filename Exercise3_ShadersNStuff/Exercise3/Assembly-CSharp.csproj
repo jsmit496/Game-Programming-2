@@ -61,9 +61,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\GlowComposite.cs" />
-    <Compile Include="Assets\Scripts\GlowObject.cs" />
-    <Compile Include="Assets\Scripts\GlowPrePass.cs" />
+    <Compile Include="Assets\AnalyticsDemo.cs" />
+    <Compile Include="Assets\DetermineGameStatus.cs" />
+    <Compile Include="Assets\ResetObject.cs" />
+    <Compile Include="Assets\Scripts\Analytics.cs" />
+    <Compile Include="Assets\Scripts\CheckFOV.cs" />
+    <Compile Include="Assets\Scripts\EditObjectGlow.cs" />
+    <Compile Include="Assets\Scripts\GlowScripts\GlowComposite.cs" />
+    <Compile Include="Assets\Scripts\GlowScripts\GlowObject.cs" />
+    <Compile Include="Assets\Scripts\GlowScripts\GlowPrePass.cs" />
+    <Compile Include="Assets\Scripts\InspectItems.cs" />
+    <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <None Include="Assets\Resources\Blur.shader" />
     <None Include="Assets\Resources\GlowReplace.shader" />
     <None Include="Assets\Resources\Standard-Glow.shader" />

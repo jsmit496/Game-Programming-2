@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickup
   - Camera
+  - GameManager
   layers:
   - Default
   - TransparentFX

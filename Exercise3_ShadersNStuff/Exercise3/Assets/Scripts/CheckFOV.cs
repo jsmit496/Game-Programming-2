@@ -6,18 +6,18 @@ public class CheckFOV : MonoBehaviour
 {
     public float maxRadius; // This will determine how close you need to be
 
-    private float maxAngle = 30f; // This will be set to the camera FOV
+    public float maxAngle = 30f; //FOV for looking at an object
 
     private List<GameObject> objectsToFind = new List<GameObject>();
 
-    private Camera playerCamera;
+    //private Camera playerCamera;
 
 	// Use this for initialization
 	void Start ()
     {
         objectsToFind.AddRange(GameObject.FindGameObjectsWithTag("Pickup"));
-        playerCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
-        maxAngle = playerCamera.fieldOfView / 2f;
+        //playerCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
+        //maxAngle = playerCamera.fieldOfView / 2f; //use this if you want to default set it to the camera FOV
 	}
 	
 	// Update is called once per frame
