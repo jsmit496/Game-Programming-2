@@ -6,11 +6,13 @@ public class DetermineGameStatus : MonoBehaviour
 {
     public bool gameOver = false;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int numItemsFound;
 
-    [HideInInspector]
+    //[HideInInspector]
     public int numItemsToFind;
+
+    private bool callAnalytics = false;
 
     private List<GameObject> itemsToFind = new List<GameObject>();
 
@@ -27,14 +29,30 @@ public class DetermineGameStatus : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (numItemsFound == numItemsToFind)
+        {
+            gameOver = true;
+        }
         if (gameOver)
         {
-            gameObject.GetComponent<Analytics>().FoundAllObjects(true);
+            if (!callAnalytics)
+            {
+                gameObject.GetComponent<Analytics>().FoundAllObjects(gameOver);
+                callAnalytics = true;
+            }
+            Application.Quit();
         }
 	}
 
     private void OnApplicationQuit()
     {
-        gameObject.GetComponent<Analytics>().FoundAllObjects(false);
+        if (!gameOver)
+        {
+            if (!callAnalytics)
+            {
+                gameObject.GetComponent<Analytics>().FoundAllObjects(gameOver);
+                callAnalytics = true;
+            }
+        }
     }
 }

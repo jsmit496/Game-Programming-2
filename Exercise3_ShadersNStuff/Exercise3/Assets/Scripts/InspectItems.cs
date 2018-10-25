@@ -8,12 +8,15 @@ public class InspectItems : MonoBehaviour
     //in its current state if you leave the cube so its not interactable then it will not reset properly. To fix this make sure movement
     //runs on its own in another script on the object and just call it here.
 
+    //Add the IMI enable/disable
+
     public float rayDistance = 5f;
     public float itemMovementSpeed = 5f;
     public float targetScale = 0.1f;
     public float shrinkSpeed = 0.1f;
     public float resetRotationSpeed = 5f;
     public float motionScale = 90f;
+    public float objectDistanceFromCamera = 4.0f;
 
     private bool canPickup = false;
     private bool moveObject = false;
@@ -28,12 +31,14 @@ public class InspectItems : MonoBehaviour
     private Vector3 itemToPickupScale;
 
     private ResetObject resetObject;
+    private InspectMenuInteraction IMI;
 
 	// Use this for initialization
 	void Start ()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         playerCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
+        IMI = GameObject.FindGameObjectWithTag("Player").GetComponent<InspectMenuInteraction>();
 	}
 	
 	// Update is called once per frame
@@ -90,7 +95,7 @@ public class InspectItems : MonoBehaviour
 
         if (moveObject == true)
         {
-            Vector3 itemScreenPosition = playerCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, playerCamera.nearClipPlane * 4));
+            Vector3 itemScreenPosition = playerCamera.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, playerCamera.nearClipPlane * objectDistanceFromCamera));
 
             itemToPickup.transform.localScale = Vector3.Lerp(itemToPickup.transform.localScale, new Vector3(targetScale, targetScale, targetScale), shrinkSpeed * Time.deltaTime);
             itemToPickup.transform.position = Vector3.Lerp(itemToPickup.transform.position, itemScreenPosition, itemMovementSpeed * Time.deltaTime);

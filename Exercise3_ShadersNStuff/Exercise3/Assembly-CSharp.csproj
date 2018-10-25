@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AnalyticsDemo.cs" />
+    <Compile Include="Assets\CameraFollow.cs" />
     <Compile Include="Assets\DetermineGameStatus.cs" />
+    <Compile Include="Assets\InspectMenuInteraction.cs" />
     <Compile Include="Assets\ResetObject.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\CheckFOV.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Assets\Scripts\GlowScripts\GlowPrePass.cs" />
     <Compile Include="Assets\Scripts\InspectItems.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\TestMovement.cs" />
     <None Include="Assets\Resources\Blur.shader" />
     <None Include="Assets\Resources\GlowReplace.shader" />
     <None Include="Assets\Resources\Standard-Glow.shader" />
