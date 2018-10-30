@@ -89,6 +89,7 @@ public class InspectItems : MonoBehaviour
                 moveObject = false;
                 playerMovement.enabled = true;
                 resetObject.reset = true;
+                resetObject.objectFound = true;
                 canPickup = false;
             }
         }
