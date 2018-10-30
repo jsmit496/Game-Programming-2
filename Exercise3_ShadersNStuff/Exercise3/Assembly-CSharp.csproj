@@ -74,6 +74,9 @@
     <Compile Include="Assets\Scripts\GlowScripts\GlowPrePass.cs" />
     <Compile Include="Assets\Scripts\InspectItems.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\TestSaveScripts\LevelDataLoadSave.cs" />
+    <Compile Include="Assets\Scripts\TestSaveScripts\MoveCube.cs" />
+    <Compile Include="Assets\Scripts\TestSaveScripts\SphereMaker.cs" />
     <Compile Include="Assets\TestMovement.cs" />
     <None Include="Assets\Resources\Blur.shader" />
     <None Include="Assets\Resources\GlowReplace.shader" />

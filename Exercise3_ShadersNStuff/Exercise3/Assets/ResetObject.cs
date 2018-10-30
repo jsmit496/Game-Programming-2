@@ -21,11 +21,20 @@ public class ResetObject : MonoBehaviour
 
     private InspectItems inspectItems;
     private InspectMenuInteraction IMI;
+    private Analytics analytics;
+    private DetermineGameStatus DGS;
+
+    private string sceneName;
+    private string gameObjectName;
 
     // Use this for initialization
     void Start ()
     {
         inspectItems = GameObject.FindGameObjectWithTag("Camera").GetComponent<InspectItems>();
+        analytics = GameObject.FindGameObjectWithTag("GameManager").GetComponent<Analytics>();
+        DGS = GameObject.FindGameObjectWithTag("GameManager").GetComponent<DetermineGameStatus>();
+        sceneName = SceneManager.GetActiveScene().name;
+        gameObjectName = gameObject.name;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         originalScale = transform.localScale;
@@ -37,6 +46,9 @@ public class ResetObject : MonoBehaviour
         ResetObjectToOriginalPosition();
         if (objectFound)
         {
+            GetComponent<EditObjectGlow>().GlowColor = Color.black;
+            analytics.FindObject(sceneName, gameObjectName);
+            DGS.numItemsFound++;
             IMI.enabled = true;
             IMI.countObject = true;
             IMI.resetObject = gameObject.GetComponent<ResetObject>();
