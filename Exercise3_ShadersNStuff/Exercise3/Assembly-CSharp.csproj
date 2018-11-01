@@ -65,6 +65,7 @@
     <Compile Include="Assets\CameraFollow.cs" />
     <Compile Include="Assets\DetermineGameStatus.cs" />
     <Compile Include="Assets\InspectMenuInteraction.cs" />
+    <Compile Include="Assets\LevelController.cs" />
     <Compile Include="Assets\ResetObject.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\CheckFOV.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\TestSaveScripts\MoveCube.cs" />
     <Compile Include="Assets\Scripts\TestSaveScripts\SphereMaker.cs" />
     <Compile Include="Assets\TestMovement.cs" />
+    <Compile Include="Assets\UIController.cs" />
     <None Include="Assets\Resources\Blur.shader" />
     <None Include="Assets\Resources\GlowReplace.shader" />
     <None Include="Assets\Resources\Standard-Glow.shader" />

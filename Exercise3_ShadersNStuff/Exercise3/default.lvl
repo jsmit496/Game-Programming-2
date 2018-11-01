@@ -1,0 +1,8 @@
+{
+    "movingSpheres": [],
+    "levelName": "Apple",
+    "groundPlane": {
+        "width": 10.0,
+        "length": 10.0
+    }
+}

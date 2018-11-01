@@ -8,6 +8,9 @@ TagManager:
   - Camera
   - GameManager
   - MovingSphere
+  - LevelController
+  - GroundPlane
+  - Obstacle
   layers:
   - Default
   - TransparentFX
