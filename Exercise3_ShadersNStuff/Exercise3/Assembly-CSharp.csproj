@@ -66,6 +66,7 @@
     <Compile Include="Assets\DetermineGameStatus.cs" />
     <Compile Include="Assets\InspectMenuInteraction.cs" />
     <Compile Include="Assets\LevelController.cs" />
+    <Compile Include="Assets\MenuController.cs" />
     <Compile Include="Assets\ResetObject.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
     <Compile Include="Assets\Scripts\CheckFOV.cs" />

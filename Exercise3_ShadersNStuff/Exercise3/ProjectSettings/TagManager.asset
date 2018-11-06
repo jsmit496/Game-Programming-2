@@ -11,6 +11,8 @@ TagManager:
   - LevelController
   - GroundPlane
   - Obstacle
+  - MenuOption1
+  - MenuOption2
   layers:
   - Default
   - TransparentFX
