@@ -10,12 +10,15 @@ public class CheckFOV : MonoBehaviour
 
     private List<GameObject> objectsToFind = new List<GameObject>();
 
+    private LevelController levelController;
+
     //private Camera playerCamera;
 
 	// Use this for initialization
 	void Start ()
     {
         objectsToFind.AddRange(GameObject.FindGameObjectsWithTag("Pickup"));
+        levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
         //playerCamera = GameObject.FindGameObjectWithTag("Camera").GetComponent<Camera>();
         //maxAngle = playerCamera.fieldOfView / 2f; //use this if you want to default set it to the camera FOV
 	}
@@ -24,6 +27,8 @@ public class CheckFOV : MonoBehaviour
 	void Update ()
     {
         inFOV(objectsToFind, maxAngle, maxRadius);
+        levelController.playerFov = maxAngle;
+        levelController.playerDetectionDistance = maxRadius;
 	}
 
     public void inFOV(List<GameObject> objects, float maxAngle, float maxRadiu)

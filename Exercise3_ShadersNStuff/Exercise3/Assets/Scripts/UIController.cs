@@ -5,20 +5,30 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public Text lblLevelName;
+    public Text levelNameText;
+    public Text saveFileText;
+    public Text saveLevelNameText;
+    public Text loadLevelText;
 
     private LevelController levelController;
+    private LevelDataLoadSave levelData;
 
     // Use this for initialization
     void Start ()
     {
         levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
+        levelData = GameObject.FindGameObjectWithTag("LevelData").GetComponent<LevelDataLoadSave>();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-        lblLevelName.text = levelController.levelName;
+        levelNameText.text = levelController.levelName;
 	}
+
+    public void SaveLevelButton()
+    {
+        levelData.SaveLevel("TestLevelSave");
+    }
 
 }

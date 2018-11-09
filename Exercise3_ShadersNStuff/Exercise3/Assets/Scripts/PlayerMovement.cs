@@ -12,11 +12,13 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playerCamera;
 
     private CursorLockMode cursorMode;
+    private LevelController levelController;
 
     void SetCursorState()
     {
         Cursor.lockState = cursorMode;
         Cursor.visible = (CursorLockMode.Locked != cursorMode);
+        levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
     }
 
     // Use this for initialization
@@ -29,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         BasicFirstPersonControls();
+        levelController.playerPosition = transform.position;
     }
 
     private void BasicFirstPersonControls()

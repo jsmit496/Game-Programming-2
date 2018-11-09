@@ -8,6 +8,7 @@ public class LevelController : MonoBehaviour
     public string levelName;
     public float playerFov;
     public float playerDetectionDistance;
+    public Vector3 playerPosition;
 
     // Use this for initialization
     void Start ()

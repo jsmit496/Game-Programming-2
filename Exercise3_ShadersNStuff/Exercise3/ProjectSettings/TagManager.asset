@@ -13,6 +13,9 @@ TagManager:
   - Obstacle
   - MenuOption1
   - MenuOption2
+  - Distraction
+  - LevelData
+  - UIController
   layers:
   - Default
   - TransparentFX

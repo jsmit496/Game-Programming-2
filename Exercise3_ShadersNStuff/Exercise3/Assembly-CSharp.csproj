@@ -61,26 +61,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AnalyticsDemo.cs" />
-    <Compile Include="Assets\CameraFollow.cs" />
-    <Compile Include="Assets\DetermineGameStatus.cs" />
-    <Compile Include="Assets\InspectMenuInteraction.cs" />
-    <Compile Include="Assets\LevelController.cs" />
-    <Compile Include="Assets\MenuController.cs" />
-    <Compile Include="Assets\ResetObject.cs" />
     <Compile Include="Assets\Scripts\Analytics.cs" />
+    <Compile Include="Assets\Scripts\AnalyticsDemo.cs" />
+    <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\CheckFOV.cs" />
+    <Compile Include="Assets\Scripts\DetermineGameStatus.cs" />
     <Compile Include="Assets\Scripts\EditObjectGlow.cs" />
     <Compile Include="Assets\Scripts\GlowScripts\GlowComposite.cs" />
     <Compile Include="Assets\Scripts\GlowScripts\GlowObject.cs" />
     <Compile Include="Assets\Scripts\GlowScripts\GlowPrePass.cs" />
     <Compile Include="Assets\Scripts\InspectItems.cs" />
+    <Compile Include="Assets\Scripts\InspectMenuInteraction.cs" />
+    <Compile Include="Assets\Scripts\LevelController.cs" />
+    <Compile Include="Assets\Scripts\MenuController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\ResetObject.cs" />
+    <Compile Include="Assets\Scripts\TestMovement.cs" />
     <Compile Include="Assets\Scripts\TestSaveScripts\LevelDataLoadSave.cs" />
     <Compile Include="Assets\Scripts\TestSaveScripts\MoveCube.cs" />
     <Compile Include="Assets\Scripts\TestSaveScripts\SphereMaker.cs" />
-    <Compile Include="Assets\TestMovement.cs" />
-    <Compile Include="Assets\UIController.cs" />
+    <Compile Include="Assets\Scripts\UIController.cs" />
     <None Include="Assets\Resources\Blur.shader" />
     <None Include="Assets\Resources\GlowReplace.shader" />
     <None Include="Assets\Resources\Standard-Glow.shader" />

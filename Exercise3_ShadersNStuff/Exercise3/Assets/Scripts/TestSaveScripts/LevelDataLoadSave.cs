@@ -6,8 +6,9 @@ using System.Text;
 
 public class LevelDataLoadSave : MonoBehaviour
 {
-    public GameObject sphereTemplate;
-    public GameObject obstacleTemplate;
+    public GameObject[] obstacleTemplates;
+    public GameObject[] targetableTemplates;
+    public GameObject[] distarctionTemplates;
 
     private LevelData levelData = new LevelData();
 
@@ -27,7 +28,7 @@ public class LevelDataLoadSave : MonoBehaviour
         print(sb.ToString());
 
         levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -35,7 +36,7 @@ public class LevelDataLoadSave : MonoBehaviour
 		
 	}
 
-    private void LoadLevel(string levelName)
+    /*private void LoadLevel(string levelName)
     {
         LevelData level = LevelData.LoadFromFile(levelName + ".lvl");
 
@@ -79,9 +80,9 @@ public class LevelDataLoadSave : MonoBehaviour
             levelSphere.transform.position = movingSphere.position;
             levelSphere.GetComponent<MoveCube>().moveSpeed = movingSphere.moveSpeed;
         }
-    }
+    }*/
 
-    private void SaveLevel(string levelName)
+    public void SaveLevel(string levelName)
     {
         LevelData level = new LevelData();
 
@@ -97,9 +98,12 @@ public class LevelDataLoadSave : MonoBehaviour
         level.PlayerFieldOfView = levelController.playerFov;
 
         //Player Detection Distance
-        level.playerDetectionDistance = levelController.playerDetectionDistance;
+        level.PlayerDetectionDistance = levelController.playerDetectionDistance;
 
-        //Obstacle (single)
+        //Player Position
+        level.PlayerPosition = levelController.playerPosition;
+
+        //Obstacle
         foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("Obstacle"))
         {
             ObstacleData newObstacle = new ObstacleData();
@@ -109,13 +113,26 @@ public class LevelDataLoadSave : MonoBehaviour
             level.obstacles.Add(newObstacle);
         }
 
-        foreach (GameObject movingSphereGameObject in GameObject.FindGameObjectsWithTag("MovingSphere"))
+        foreach (GameObject targetObjects in GameObject.FindGameObjectsWithTag("Pickup"))
         {
-            MovingSphereData currentMovingSphere = new MovingSphereData();
-            currentMovingSphere.position = movingSphereGameObject.transform.position;
-            currentMovingSphere.moveSpeed = movingSphereGameObject.GetComponent<MoveCube>().moveSpeed;
+            TargetableData newTargetObject = new TargetableData();
+            newTargetObject.position = targetObjects.transform.position;
+            newTargetObject.xRotation = targetObjects.transform.localEulerAngles.x;
+            newTargetObject.yRotation = targetObjects.transform.localEulerAngles.y;
+            newTargetObject.zRotation = targetObjects.transform.localEulerAngles.z;
 
-            levelData.movingSpheres.Add(currentMovingSphere);
+            level.targets.Add(newTargetObject);
+        }
+
+        foreach (GameObject distractionObject in GameObject.FindGameObjectsWithTag("Distraction"))
+        {
+            DistractionData newDistractionObject = new DistractionData();
+            newDistractionObject.position = distractionObject.transform.position;
+            newDistractionObject.xRotation = distractionObject.transform.localEulerAngles.x;
+            newDistractionObject.yRotation = distractionObject.transform.localEulerAngles.y;
+            newDistractionObject.zRotation = distractionObject.transform.localEulerAngles.z;
+
+            level.distractions.Add(newDistractionObject);
         }
 
         level.SaveToFile(levelName + ".lvl");
@@ -125,7 +142,7 @@ public class LevelDataLoadSave : MonoBehaviour
     private string loadLevelName = "default";
     private string saveLevelName = "default";
 
-    private void OnGUI()
+    /*private void OnGUI()
     {
         if (GUILayout.Button("Load Level"))
         {
@@ -144,7 +161,7 @@ public class LevelDataLoadSave : MonoBehaviour
         }
         GUILayout.Label("Level name to save");
         saveLevelName = GUILayout.TextField(saveLevelName);
-    }
+    }*/
 }
 
 [Serializable]
@@ -162,6 +179,24 @@ public class ObstacleData
 }
 
 [Serializable]
+public class TargetableData
+{
+    public Vector3 position;
+    public float xRotation;
+    public float yRotation;
+    public float zRotation;
+}
+
+[Serializable]
+public class DistractionData
+{
+    public Vector3 position;
+    public float xRotation;
+    public float yRotation;
+    public float zRotation;
+}
+
+[Serializable]
 public class LevelData
 {
     public List<MovingSphereData> movingSpheres = new List<MovingSphereData>();
@@ -172,8 +207,11 @@ public class LevelData
 
     public float fieldOfView;
     public float playerDetectionDistance;
+    public Vector3 playerPosition;
 
     public List<ObstacleData> obstacles = new List<ObstacleData>();
+    public List<TargetableData> targets = new List<TargetableData>();
+    public List<DistractionData> distractions = new List<DistractionData>();
 
     //Item 2 - getter/setter for external objects to manipulate level name
     public string GetLevelName()
@@ -206,6 +244,18 @@ public class LevelData
         set
         {
             playerDetectionDistance = value;
+        }
+    }
+
+    public Vector3 PlayerPosition
+    {
+        get
+        {
+            return playerPosition;
+        }
+        set
+        {
+            playerPosition = value;
         }
     }
 
