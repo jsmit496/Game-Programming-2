@@ -16,6 +16,15 @@ TagManager:
   - Distraction
   - LevelData
   - UIController
+  - LevelEditor
+  - LengthInput
+  - WidthInput
+  - XPositionInput
+  - YPositionInput
+  - ZPositionInput
+  - XRotationInput
+  - YRotationInput
+  - ZRotationInput
   layers:
   - Default
   - TransparentFX

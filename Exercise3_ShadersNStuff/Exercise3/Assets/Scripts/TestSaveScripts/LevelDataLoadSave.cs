@@ -8,7 +8,7 @@ public class LevelDataLoadSave : MonoBehaviour
 {
     public GameObject[] obstacleTemplates;
     public GameObject[] targetableTemplates;
-    public GameObject[] distarctionTemplates;
+    public GameObject[] distractionTemplates;
 
     private LevelData levelData = new LevelData();
 
@@ -36,7 +36,7 @@ public class LevelDataLoadSave : MonoBehaviour
 		
 	}
 
-    /*private void LoadLevel(string levelName)
+    public void LoadLevel(string levelName)
     {
         LevelData level = LevelData.LoadFromFile(levelName + ".lvl");
 
@@ -55,6 +55,9 @@ public class LevelDataLoadSave : MonoBehaviour
         //Player Detection Distance
         levelController.playerDetectionDistance = level.playerDetectionDistance;
 
+        //Level Player Distance
+        levelController.playerPosition = level.PlayerPosition;
+
         //Obstacles
         foreach (GameObject existingObstacle in GameObject.FindGameObjectsWithTag("Obstacle"))
         {
@@ -62,14 +65,53 @@ public class LevelDataLoadSave : MonoBehaviour
         }
         foreach (ObstacleData obstacle in level.obstacles)
         {
-            GameObject levelObstacle = GameObject.Instantiate(obstacleTemplate);
-            levelObstacle.transform.position = obstacle.position;
-            levelObstacle.transform.localEulerAngles = new Vector3(1, obstacle.yRotation, 1);
+            foreach (GameObject obj in obstacleTemplates)
+            {
+                if (obstacle.objectType == obj.name)
+                {
+                    GameObject levelObstacle = Instantiate(obj);
+                    levelObstacle.transform.position = obstacle.position;
+                    levelObstacle.transform.localEulerAngles = new Vector3(0, obstacle.yRotation, 0);
+                }
+            }
         }
-        
 
+        foreach (GameObject existingTarget in GameObject.FindGameObjectsWithTag("Pickup"))
+        {
+            Destroy(existingTarget);
+        }
+        foreach (TargetableData targetObject in level.targets)
+        {
+            foreach (GameObject obj in targetableTemplates)
+            {
+                if (targetObject.objectType == obj.name)
+                {
+                    GameObject levelTarget = Instantiate(obj);
+                    levelTarget.transform.position = targetObject.position;
+                    levelTarget.transform.localEulerAngles = new Vector3(targetObject.xRotation, targetObject.yRotation, targetObject.zRotation);
+                    levelTarget.GetComponent<EditObjectGlow>().GlowColor = targetObject.glowColor;
+                }
+            }
+        }
 
-        foreach (GameObject existingSphere in GameObject.FindGameObjectsWithTag("MovingSphere"))
+        foreach (GameObject exisitingDistraction in GameObject.FindGameObjectsWithTag("Distraction"))
+        {
+            Destroy(exisitingDistraction);
+        }
+        foreach (DistractionData distractionObject in level.distractions)
+        {
+            foreach (GameObject obj in distractionTemplates)
+            {
+                if (distractionObject.objectType == obj.name)
+                {
+                    GameObject levelDistraction = Instantiate(obj);
+                    levelDistraction.transform.position = distractionObject.position;
+                    levelDistraction.transform.localEulerAngles = new Vector3(distractionObject.xRotation, distractionObject.yRotation, distractionObject.zRotation);
+                }
+            }
+        }
+
+        /*foreach (GameObject existingSphere in GameObject.FindGameObjectsWithTag("MovingSphere"))
         {
             Destroy(existingSphere);
         }
@@ -79,8 +121,8 @@ public class LevelDataLoadSave : MonoBehaviour
             GameObject levelSphere = GameObject.Instantiate(sphereTemplate);
             levelSphere.transform.position = movingSphere.position;
             levelSphere.GetComponent<MoveCube>().moveSpeed = movingSphere.moveSpeed;
-        }
-    }*/
+        }*/
+    }
 
     public void SaveLevel(string levelName)
     {
@@ -107,6 +149,13 @@ public class LevelDataLoadSave : MonoBehaviour
         foreach (GameObject obstacle in GameObject.FindGameObjectsWithTag("Obstacle"))
         {
             ObstacleData newObstacle = new ObstacleData();
+            foreach (GameObject obj in obstacleTemplates)
+            {
+                if (obstacle.name.Contains(obj.name))
+                {
+                    newObstacle.objectType = obj.name;
+                }
+            }
             newObstacle.position = obstacle.transform.position;
             newObstacle.yRotation = obstacle.transform.localEulerAngles.y;
 
@@ -116,10 +165,18 @@ public class LevelDataLoadSave : MonoBehaviour
         foreach (GameObject targetObjects in GameObject.FindGameObjectsWithTag("Pickup"))
         {
             TargetableData newTargetObject = new TargetableData();
+            foreach (GameObject obj in targetableTemplates)
+            {
+                if (targetObjects.name.Contains(obj.name))
+                {
+                    newTargetObject.objectType = obj.name;
+                }
+            }
             newTargetObject.position = targetObjects.transform.position;
             newTargetObject.xRotation = targetObjects.transform.localEulerAngles.x;
             newTargetObject.yRotation = targetObjects.transform.localEulerAngles.y;
             newTargetObject.zRotation = targetObjects.transform.localEulerAngles.z;
+            newTargetObject.glowColor = targetObjects.GetComponent<EditObjectGlow>().GlowColor;
 
             level.targets.Add(newTargetObject);
         }
@@ -127,6 +184,13 @@ public class LevelDataLoadSave : MonoBehaviour
         foreach (GameObject distractionObject in GameObject.FindGameObjectsWithTag("Distraction"))
         {
             DistractionData newDistractionObject = new DistractionData();
+            foreach (GameObject obj in distractionTemplates)
+            {
+                if (distractionObject.name.Contains(obj.name))
+                {
+                    newDistractionObject.objectType = obj.name;
+                }
+            }
             newDistractionObject.position = distractionObject.transform.position;
             newDistractionObject.xRotation = distractionObject.transform.localEulerAngles.x;
             newDistractionObject.yRotation = distractionObject.transform.localEulerAngles.y;
@@ -174,6 +238,7 @@ public class GroundPlane
 [Serializable]
 public class ObstacleData
 {
+    public string objectType;
     public Vector3 position;
     public float yRotation;
 }
@@ -181,15 +246,18 @@ public class ObstacleData
 [Serializable]
 public class TargetableData
 {
+    public string objectType;
     public Vector3 position;
     public float xRotation;
     public float yRotation;
     public float zRotation;
+    public Color glowColor;
 }
 
 [Serializable]
 public class DistractionData
 {
+    public string objectType;
     public Vector3 position;
     public float xRotation;
     public float yRotation;

@@ -18,13 +18,12 @@ public class PlayerMovement : MonoBehaviour
     {
         Cursor.lockState = cursorMode;
         Cursor.visible = (CursorLockMode.Locked != cursorMode);
-        levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
     }
 
     // Use this for initialization
     void Start()
     {
-
+        levelController = GameObject.FindGameObjectWithTag("LevelController").GetComponent<LevelController>();
     }
 
     // Update is called once per frame

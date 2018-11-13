@@ -38,7 +38,7 @@ public class CheckFOV : MonoBehaviour
 
         foreach (GameObject obj in objects)
         {
-            if (overlaps.Contains(obj.GetComponent<Collider>()))
+            if (overlaps != null && overlaps.Contains(obj.GetComponent<Collider>()))
             {
                 Vector3 directionBetween = (obj.transform.position - gameObject.transform.position).normalized;
 

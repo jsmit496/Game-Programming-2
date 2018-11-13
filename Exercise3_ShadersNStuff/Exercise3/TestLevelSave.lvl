@@ -8,12 +8,13 @@
     "fieldOfView": 30.0,
     "playerDetectionDistance": 2.0,
     "playerPosition": {
-        "x": 0.7626533508300781,
-        "y": 1.0000001192092896,
-        "z": 1.0154693126678467
+        "x": 0.0,
+        "y": 1.0,
+        "z": -7.492317183332986e-11
     },
     "obstacles": [
         {
+            "objectType": "ObstacleWall",
             "position": {
                 "x": 0.0,
                 "y": 2.5,
@@ -22,6 +23,7 @@
             "yRotation": 0.0
         },
         {
+            "objectType": "ObstacleWall",
             "position": {
                 "x": 5.0,
                 "y": 2.5,
@@ -32,46 +34,7 @@
     ],
     "targets": [
         {
-            "position": {
-                "x": 2.940000057220459,
-                "y": 0.25,
-                "z": -3.6700000762939455
-            },
-            "xRotation": 0.0,
-            "yRotation": 0.0,
-            "zRotation": 0.0
-        },
-        {
-            "position": {
-                "x": 1.190000057220459,
-                "y": 0.25,
-                "z": -3.6700000762939455
-            },
-            "xRotation": 0.0,
-            "yRotation": 0.0,
-            "zRotation": 0.0
-        },
-        {
-            "position": {
-                "x": -0.7599999904632568,
-                "y": 0.25,
-                "z": 2.630000114440918
-            },
-            "xRotation": 0.0,
-            "yRotation": 0.0,
-            "zRotation": 0.0
-        },
-        {
-            "position": {
-                "x": -2.240000009536743,
-                "y": 0.25,
-                "z": -3.6700000762939455
-            },
-            "xRotation": 0.0,
-            "yRotation": 0.0,
-            "zRotation": 0.0
-        },
-        {
+            "objectType": "BlueCube",
             "position": {
                 "x": -3.6710000038146974,
                 "y": 0.25,
@@ -79,11 +42,86 @@
             },
             "xRotation": 0.0,
             "yRotation": 0.0,
-            "zRotation": 0.0
+            "zRotation": 0.0,
+            "glowColor": {
+                "r": 0.0,
+                "g": 0.027450980618596078,
+                "b": 1.0,
+                "a": 0.0
+            }
+        },
+        {
+            "objectType": "OrangeCube",
+            "position": {
+                "x": -0.7599999904632568,
+                "y": 0.25,
+                "z": 2.630000114440918
+            },
+            "xRotation": 0.0,
+            "yRotation": 0.0,
+            "zRotation": 0.0,
+            "glowColor": {
+                "r": 1.0,
+                "g": 0.5333333611488342,
+                "b": 0.0,
+                "a": 0.0
+            }
+        },
+        {
+            "objectType": "GreenCube",
+            "position": {
+                "x": -2.240000009536743,
+                "y": 0.25,
+                "z": -3.6700000762939455
+            },
+            "xRotation": 0.0,
+            "yRotation": 0.0,
+            "zRotation": 0.0,
+            "glowColor": {
+                "r": 0.0,
+                "g": 0.6313725709915161,
+                "b": 0.0117647061124444,
+                "a": 0.0
+            }
+        },
+        {
+            "objectType": "YellowCube",
+            "position": {
+                "x": 2.940000057220459,
+                "y": 0.25,
+                "z": -3.6700000762939455
+            },
+            "xRotation": 0.0,
+            "yRotation": 0.0,
+            "zRotation": 0.0,
+            "glowColor": {
+                "r": 1.0,
+                "g": 0.9725490212440491,
+                "b": 0.0,
+                "a": 0.0
+            }
+        },
+        {
+            "objectType": "RedCube",
+            "position": {
+                "x": 1.190000057220459,
+                "y": 0.25,
+                "z": -3.6700000762939455
+            },
+            "xRotation": 0.0,
+            "yRotation": 0.0,
+            "zRotation": 0.0,
+            "glowColor": {
+                "r": 1.0,
+                "g": 0.0,
+                "b": 0.0,
+                "a": 0.0
+            }
         }
     ],
     "distractions": [
         {
+            "objectType": "GreenCube",
             "position": {
                 "x": 2.854874849319458,
                 "y": 0.24999980628490449,
@@ -94,6 +132,7 @@
             "zRotation": 0.0
         },
         {
+            "objectType": "BlueCube",
             "position": {
                 "x": -3.57267165184021,
                 "y": 0.24999968707561494,
@@ -102,6 +141,35 @@
             "xRotation": 0.0,
             "yRotation": 0.0,
             "zRotation": 0.0
+        }
+    ],
+    "savedObjects": [
+        {
+            "instanceID": -2604
+        },
+        {
+            "instanceID": -2502
+        },
+        {
+            "instanceID": -2590
+        },
+        {
+            "instanceID": -2576
+        },
+        {
+            "instanceID": -2562
+        },
+        {
+            "instanceID": -2482
+        },
+        {
+            "instanceID": -2468
+        },
+        {
+            "instanceID": -2626
+        },
+        {
+            "instanceID": -2614
         }
     ]
 }
