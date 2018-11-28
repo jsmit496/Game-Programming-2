@@ -61,8 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LevelGrid.cs" />
-    <Compile Include="Assets\Node.cs" />
+    <Compile Include="Assets\GenerateWalls.cs" />
+    <Compile Include="Assets\Scripts\LevelGrid.cs" />
+    <Compile Include="Assets\Scripts\Node.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/svc-student/Documents/Dev/Game-Programming-2/RoomGenerator/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
