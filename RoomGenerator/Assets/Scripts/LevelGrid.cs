@@ -15,7 +15,8 @@ public class LevelGrid : MonoBehaviour
     [HideInInspector]
     public List<Node> roomNodes = new List<Node>();
 
-    int gridSizeX, gridSizeY;
+    [HideInInspector]
+    public int gridSizeX, gridSizeY;
     float nodeDiameter;
 
     float roomScaleX, roomScaleZ;
@@ -30,8 +31,8 @@ public class LevelGrid : MonoBehaviour
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
-        roomScaleX = 1 / (float)(gridSizeX * gridSizeX);
-        roomScaleZ = 1 / (float)(gridSizeY * gridSizeY);
+        //roomScaleX = 1 / (float)(gridSizeX * gridSizeX);
+        //roomScaleZ = 1 / (float)(gridSizeY * gridSizeY);
         roomScaleX = 1 / (float)(5 * 5) * 2.5f;
         roomScaleZ = 1 / (float)(5 * 5) * 2.5f;
         roomScale = new Vector3(roomScaleX, 1, roomScaleZ);
@@ -117,8 +118,10 @@ public class LevelGrid : MonoBehaviour
         foreach (Node n in roomNodes)
         {
             dummyRoom = Instantiate(basicRoom);
+            dummyRoom.GetComponent<GenerateWalls>().sourceNode = n;
             dummyRoom.transform.position = n.position;
             dummyRoom.transform.localScale = roomScale;
+            n.attachedRoom = dummyRoom;
         }
     }
 
@@ -130,9 +133,9 @@ public class LevelGrid : MonoBehaviour
         }
     }
 
-    public Dictionary<int, Node> GetNeighborNodes(Node node)
+    public Dictionary<string, Node> GetNeighborNodes(Node node)
     {
-        Dictionary<int, Node> neighborNodes = new Dictionary<int, Node>();
+        Dictionary<string, Node> neighborNodes = new Dictionary<string, Node>();
         int xCheck;
         int yCheck;
 
@@ -143,7 +146,7 @@ public class LevelGrid : MonoBehaviour
         {
             if (yCheck >= 0 && yCheck < gridSizeY)
             {
-                neighborNodes.Add(neighborNodes.Count, grid[xCheck, yCheck]);
+                neighborNodes.Add("right", grid[xCheck, yCheck]);
             }
         }
 
@@ -154,7 +157,7 @@ public class LevelGrid : MonoBehaviour
         {
             if (yCheck >= 0 && yCheck < gridSizeY)
             {
-                neighborNodes.Add(neighborNodes.Count, grid[xCheck, yCheck]);
+                neighborNodes.Add("left", grid[xCheck, yCheck]);
             }
         }
 
@@ -165,7 +168,7 @@ public class LevelGrid : MonoBehaviour
         {
             if (yCheck >= 0 && yCheck < gridSizeY)
             {
-                neighborNodes.Add(neighborNodes.Count, grid[xCheck, yCheck]);
+                neighborNodes.Add("top", grid[xCheck, yCheck]);
             }
         }
 
@@ -176,7 +179,7 @@ public class LevelGrid : MonoBehaviour
         {
             if (yCheck >= 0 && yCheck < gridSizeY)
             {
-                neighborNodes.Add(neighborNodes.Count, grid[xCheck, yCheck]);
+                neighborNodes.Add("bottom", grid[xCheck, yCheck]);
             }
         }
 
@@ -194,12 +197,12 @@ public class LevelGrid : MonoBehaviour
                 if (!node.isRoom)
                 {
                     Gizmos.color = Color.red;
+                    Gizmos.DrawCube(node.position, new Vector3(1 * (nodeDiameter - 0.1f), 0.2f, 1 * (nodeDiameter - 0.1f)));
                 }
                 else if (node.isRoom)
                 {
                     Gizmos.color = Color.yellow;
                 }
-                Gizmos.DrawCube(node.position, new Vector3(1 * (nodeDiameter - 0.1f), 0.2f, 1 * (nodeDiameter - 0.1f)));
             }
         }
     }

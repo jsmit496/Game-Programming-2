@@ -9,7 +9,9 @@ public class Node : MonoBehaviour
 
     public Vector3 position;
 
-    public Dictionary<int, Node> neighbors;
+    public Dictionary<string, Node> neighbors;
+
+    public GameObject attachedRoom;
 
     public Node(bool _isRoom, Vector3 _position, int _gridX, int _gridY)
     {
