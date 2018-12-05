@@ -8,8 +8,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playerCamera;
 
     public float speed = 4.0f;
+    public float rotationSpeed = 4.0f;
     public float cameraMovementSpeed = 4.0f;
     public float cameraDistanceY = 4.0f;
+
+    public LayerMask detectMouse;
 
     private bool setCameraPosition = false;
     private Vector3 desiredPosition;
@@ -24,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
 	void Update ()
     {
         Movement();
+        PlayerRotation();
         SetCameraPosition();
 	}
 
@@ -48,13 +52,36 @@ public class PlayerMovement : MonoBehaviour
             moveDirection += Vector3.right;
         }
         transform.position += moveDirection * Time.deltaTime * speed;
+    }
 
+    void PlayerRotation()
+    {
+        Vector3 mouse = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mouse);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, detectMouse))
+        {
+            Vector3 targetDir = hit.point - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed * Time.deltaTime, 0f);
+            Quaternion newRotation = Quaternion.LookRotation(newDir);
+            newRotation.x = 0;
+            newRotation.z = 0;
+            transform.rotation = newRotation;
+        }
+
+        /*
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo))
+        if (Physics.Raycast(ray, out hitInfo, detectMouse))
         {
-            transform.LookAt(new Vector3(hitInfo.transform.position.x, transform.position.y, hitInfo.transform.position.z));
-        }
+            print(string.Format("hitInfo position: {0}; hitInfo rotation: {1}", hitInfo.transform.position, hitInfo.transform.rotation));
+            Vector3 targetDir = hitInfo.transform.position - transform.position;
+            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed * Time.deltaTime, 0f);
+            Quaternion newRotation = Quaternion.LookRotation(newDir);
+            newRotation.x = 0;
+            newRotation.z = 0;
+            transform.rotation = newRotation;
+        }*/
     }
 
     void SetCameraPosition()

@@ -34,7 +34,7 @@ public class GenerateWalls : MonoBehaviour
     public void SetWalls()
     {
         Node n = sourceNode;
-        float x, y, z;
+        float x, z;
         if (n.neighbors.ContainsKey("left") && n.neighbors["left"].isRoom)
         {
             x = leftSpawnPoint.transform.position.x;
