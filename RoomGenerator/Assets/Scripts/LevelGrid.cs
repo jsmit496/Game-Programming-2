@@ -25,6 +25,8 @@ public class LevelGrid : MonoBehaviour
     GameObject dummyRoom;
     int randomNumberX, randomNumberY;
 
+    GameController gameController;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -36,10 +38,13 @@ public class LevelGrid : MonoBehaviour
         roomScaleX = 1 / (float)(5 * 5) * 2.5f;
         roomScaleZ = 1 / (float)(5 * 5) * 2.5f;
         roomScale = new Vector3(roomScaleX, 1, roomScaleZ);
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         CreateGrid();
         SetNeighborNodes();
         SetRooms();
         SpawnRooms();
+        SetStartEndRooms();
+        gameController.SetPlayerPosition();
     }
 
     // Update is called once per frame
@@ -125,6 +130,29 @@ public class LevelGrid : MonoBehaviour
         }
     }
 
+    public void SetStartEndRooms()
+    {
+        if (grid != null)
+        {
+            int randomNumber = Random.Range(0, roomNodes.Count);
+            roomNodes[randomNumber].isStart = true;
+            Node startNode = roomNodes[randomNumber];
+            Node endNode = roomNodes[randomNumber];
+            float farthestDistance = Vector3.Distance(startNode.position, endNode.position);
+
+            foreach (Node n in roomNodes)
+            {
+                float distance = Vector3.Distance(n.position, startNode.position);
+                if (distance > farthestDistance)
+                {
+                    farthestDistance = distance;
+                    endNode = n;
+                }
+            }
+            endNode.isEnd = true;
+        }
+    }
+
     public void SetNeighborNodes()
     {
         foreach(Node n in grid)
@@ -197,11 +225,17 @@ public class LevelGrid : MonoBehaviour
                 if (!node.isRoom)
                 {
                     Gizmos.color = Color.red;
-                    Gizmos.DrawCube(node.position, new Vector3(1 * (nodeDiameter - 0.1f), 0.2f, 1 * (nodeDiameter - 0.1f)));
+                    Gizmos.DrawCube(node.position, new Vector3(1 * (nodeDiameter - 0.1f), 0.1f, 1 * (nodeDiameter - 0.1f)));
                 }
-                else if (node.isRoom)
+                else if (node.isRoom && node.isStart)
                 {
-                    Gizmos.color = Color.yellow;
+                    Gizmos.color = Color.blue;
+                    //Gizmos.DrawCube(node.position, new Vector3(1 * (nodeDiameter - 0.1f), 0.01f, 1 * (nodeDiameter - 0.1f)));
+                }
+                else if (node.isRoom && node.isEnd)
+                {
+                    Gizmos.color = Color.gray;
+                    //Gizmos.DrawCube(node.position, new Vector3(1 * (nodeDiameter - 0.1f), 0.01f, 1 * (nodeDiameter - 0.1f)));
                 }
             }
         }

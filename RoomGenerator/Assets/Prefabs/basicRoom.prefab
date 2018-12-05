@@ -38,9 +38,11 @@ GameObject:
   - component: {fileID: 23192985930754928}
   - component: {fileID: 64789452249014460}
   - component: {fileID: 114453275006191228}
+  - component: {fileID: 114975542163131886}
+  - component: {fileID: 65459740920052506}
   m_Layer: 0
   m_Name: basicRoom
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,8 +99,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1510964066761988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 4.7950926, y: -4.283106, z: 2.67847}
+  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
   m_Children:
   - {fileID: 4627567581991636}
   - {fileID: 4571974074080518}
@@ -215,6 +217,18 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &65459740920052506
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510964066761988}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.34632874, z: 10}
+  m_Center: {x: 0, y: 0.12266588, z: 0}
 --- !u!114 &114453275006191228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -233,3 +247,20 @@ MonoBehaviour:
   bottomSpawnPoint: {fileID: 1673479367540468}
   topSpawnPoint: {fileID: 1073983241703276}
   sourceNode: {fileID: 0}
+--- !u!114 &114975542163131886
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1510964066761988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 958f9e793c6a9644480d537b0d6d2356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRadius: 0.1
+  unwalkable:
+    serializedVersion: 2
+    m_Bits: 512
+  gridRoomSize: {x: 10, y: 10}
+  tileNodes: []
