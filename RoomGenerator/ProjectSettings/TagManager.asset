@@ -22,8 +22,8 @@ TagManager:
   - PostProcessing
   - Unwalkable
   - GameController
-  - 
-  - 
+  - Bullet
+  - Player
   - 
   - 
   - 
