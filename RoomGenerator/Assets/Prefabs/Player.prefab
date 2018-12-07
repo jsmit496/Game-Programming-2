@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 114756523049559082}
   - component: {fileID: 54978540525597374}
   - component: {fileID: 114950973362940726}
+  - component: {fileID: 114505655701043622}
   m_Layer: 12
   m_Name: Player
   m_TagString: Untagged
@@ -121,7 +122,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d3ebbb8816003104dbd1ace7aea2a66a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +157,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d3ebbb8816003104dbd1ace7aea2a66a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -217,6 +218,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114505655701043622
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757849664773952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7605a39e13fbb654e90786776cae8e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114756523049559082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -249,7 +261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 1364538896587964, guid: 7e4649eca5751d2438361e272010618a, type: 2}
   shootPosition: {fileID: 4542367501497558}
-  bulletSpeed: 0.0000001
+  bulletSpeed: 2000
+  numArrows: 20
 --- !u!136 &136982395465074194
 CapsuleCollider:
   m_ObjectHideFlags: 1

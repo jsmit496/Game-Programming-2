@@ -5,9 +5,13 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     public GameObject player;
+    public GameObject chest;
+    public GameObject enemy;
     LevelGrid levelGrid;
 
     GameObject dummyPlayer;
+    GameObject dummyChest;
+    GameObject dummyEnemy;
 
 	// Use this for initialization
 	void Start ()

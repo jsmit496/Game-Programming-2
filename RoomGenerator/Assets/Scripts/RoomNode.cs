@@ -5,6 +5,8 @@ using UnityEngine;
 public class RoomNode : MonoBehaviour
 {
     public bool isBlocked;
+    public bool containsChest;
+    public bool containsEnemy;
     public int gridX, gridY;
 
     public Vector3 position;

@@ -7,6 +7,8 @@ public class Node : MonoBehaviour
     public bool isRoom;
     public bool isStart;
     public bool isEnd;
+    public bool containsChest;
+    public bool containsEnemy;
     public int gridX, gridY;
 
     public Vector3 position;

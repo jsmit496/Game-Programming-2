@@ -8,6 +8,8 @@ public class RoomGrid : MonoBehaviour
     public LayerMask unwalkable;
     [HideInInspector]
     public Vector2 gridRoomSize;
+    public GameObject chest;
+    public GameObject enemy;
 
     RoomNode[,] grid;
     [HideInInspector]
@@ -15,6 +17,10 @@ public class RoomGrid : MonoBehaviour
 
     int gridSizeX, gridSizeY;
     float nodeDiameter;
+
+    GameController gameController;
+    GameObject dummyChest;
+    GameObject dummyEnemy;
 
     // Use this for initialization
     void Start ()
@@ -24,13 +30,16 @@ public class RoomGrid : MonoBehaviour
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridRoomSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridRoomSize.y / nodeDiameter);
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         CreateGrid();
+        SetChest();
+        SetEnemy();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+
 	}
 
     public void CreateGrid()
@@ -48,6 +57,48 @@ public class RoomGrid : MonoBehaviour
                     blocked = false;
                 }
                 grid[x, y] = new RoomNode(blocked, worldPoint, x, y);
+            }
+        }
+        foreach (RoomNode rn in grid)
+        {
+            tileNodes.Add(rn);
+        }
+    }
+
+    public void SetChest()
+    {
+        bool hasChest = false;
+        foreach (RoomNode rn in tileNodes)
+        {
+            if (rn.isBlocked && !hasChest && !rn.containsEnemy)
+            {
+                int randomNum = Random.Range(0, 2);
+                if (randomNum == 0)
+                {
+                    Vector3 desiredPosition = new Vector3(rn.position.x, chest.transform.position.y, rn.position.z);
+                    print(desiredPosition);
+                    dummyChest = Instantiate(chest, desiredPosition, chest.transform.rotation);
+                    hasChest = true;
+                }
+            }
+        }
+    }
+
+    public void SetEnemy()
+    {
+        bool hasEnemy = false;
+        foreach (RoomNode rn in tileNodes)
+        {
+            if (rn.isBlocked && !hasEnemy && !rn.containsChest)
+            {
+                int randomNum = Random.Range(0, 2);
+                if (randomNum == 0)
+                {
+                    Vector3 desiredPosition = new Vector3(rn.position.x, enemy.transform.position.y, rn.position.z);
+                    print(desiredPosition);
+                    dummyEnemy = Instantiate(enemy, desiredPosition, enemy.transform.rotation);
+                    hasEnemy = true;
+                }
             }
         }
     }

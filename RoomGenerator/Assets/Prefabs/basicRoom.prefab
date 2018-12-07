@@ -250,4 +250,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   gridRoomSize: {x: 10, y: 10}
+  chest: {fileID: 1246846140246218, guid: 0f08af30a8b82db4d9bd7dcf7dde8f3a, type: 2}
+  enemy: {fileID: 1036619424512856, guid: 0d4ec218e1f02e74c861a1e555eebc0f, type: 2}
   tileNodes: []

@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23513970897427006}
   - component: {fileID: 136812458886868730}
   m_Layer: 11
-  m_Name: Cylinder
+  m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23459805225856596}
   - component: {fileID: 65470722921100862}
   m_Layer: 11
-  m_Name: Cube (1)
+  m_Name: Fin2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 4422236714735566}
   - component: {fileID: 54540975704707766}
   - component: {fileID: 65044471810970898}
+  - component: {fileID: 114909858422834942}
   m_Layer: 11
   m_Name: Arrow
   m_TagString: Untagged
@@ -133,7 +134,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1364538896587964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.112}
+  m_LocalPosition: {x: 6.9056883, y: -4.7383523, z: 5.071263}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4263668345666436}
@@ -362,8 +363,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.021227837, y: 0.02196312, z: 0.06704807}
+  m_Center: {x: -0.0031991005, y: 0.003399372, z: 0.0047750473}
 --- !u!65 &65400762819638814
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -372,7 +373,7 @@ BoxCollider:
   m_GameObject: {fileID: 1831029179380450}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -384,10 +385,21 @@ BoxCollider:
   m_GameObject: {fileID: 1204377834620166}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114909858422834942
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1364538896587964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4609c8f2a182d84698bb54c022af189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135561948179107628
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -396,7 +408,7 @@ SphereCollider:
   m_GameObject: {fileID: 1257782181897934}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -408,7 +420,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 1006328251890158}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5000001
   m_Height: 2
   m_Direction: 1

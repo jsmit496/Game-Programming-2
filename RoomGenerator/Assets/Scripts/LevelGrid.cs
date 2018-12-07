@@ -44,6 +44,8 @@ public class LevelGrid : MonoBehaviour
         SetRooms();
         SpawnRooms();
         SetStartEndRooms();
+        SetChestRooms();
+        SetEnemyRooms();
         gameController.SetPlayerPosition();
     }
 
@@ -150,6 +152,63 @@ public class LevelGrid : MonoBehaviour
                 }
             }
             endNode.isEnd = true;
+        }
+    }
+
+    public void SetChestRooms()
+    {
+        if (grid != null)
+        {
+            foreach (Node n in roomNodes)
+            {
+                if (n.isRoom)
+                {
+                    if (!n.isEnd)
+                    {
+                        if (!n.isStart)
+                        {
+                            int randomNumber = Random.Range(0, 2);
+                            print(randomNumber);
+                            if (randomNumber == 0)
+                            {
+                                n.containsChest = false;
+                            }
+                            else if (randomNumber != 0)
+                            {
+                                n.containsChest = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void SetEnemyRooms()
+    {
+        if (grid != null)
+        {
+            foreach (Node n in roomNodes)
+            {
+                if (n.isRoom)
+                {
+                    if (!n.isEnd)
+                    {
+                        if (!n.isStart)
+                        {
+                            int randomNumber = Random.Range(0, 2);
+                            if (randomNumber == 0)
+                            {
+                                n.containsEnemy = false;
+                            }
+                            else if (randomNumber != 0)
+                            {
+                                n.containsEnemy = true;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
