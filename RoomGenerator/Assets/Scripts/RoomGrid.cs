@@ -22,6 +22,9 @@ public class RoomGrid : MonoBehaviour
     GameObject dummyChest;
     GameObject dummyEnemy;
 
+    GameObject[] enemies;
+    MoveTowardsPlayer[] moveTowardsPlayer;
+
     // Use this for initialization
     void Start ()
     {
@@ -32,8 +35,19 @@ public class RoomGrid : MonoBehaviour
         gridSizeY = Mathf.RoundToInt(gridRoomSize.y / nodeDiameter);
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
         CreateGrid();
+        foreach (RoomNode rn in tileNodes)
+        {
+            rn.neighbors = GetNeighborNodes(rn);
+        }
         SetChest();
         SetEnemy();
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        moveTowardsPlayer = new MoveTowardsPlayer[enemies.Length];
+        for (int i = 0; i < moveTowardsPlayer.Length; i++)
+        {
+            moveTowardsPlayer[i] = enemies[i].GetComponent<MoveTowardsPlayer>();
+        }
+        SetPathNodes();
     }
 	
 	// Update is called once per frame
@@ -63,6 +77,60 @@ public class RoomGrid : MonoBehaviour
         {
             tileNodes.Add(rn);
         }
+    }
+
+    public List<RoomNode> GetNeighborNodes(RoomNode _node)
+    {
+        List<RoomNode> neighborNodes = new List<RoomNode>();
+        int xCheck;
+        int yCheck;
+
+        //Right Side
+        xCheck = _node.gridX + 1;
+        yCheck = _node.gridY;
+        if (xCheck >= 0 && xCheck < gridSizeY)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighborNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+
+        //Left Side
+        xCheck = _node.gridX - 1;
+        yCheck = _node.gridY;
+        if (xCheck >= 0 && xCheck < gridSizeY)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighborNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        //Top Side
+        xCheck = _node.gridX;
+        yCheck = _node.gridY + 1;
+        if (xCheck >= 0 && xCheck < gridSizeY)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighborNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        //Bottom Side
+        xCheck = _node.gridX;
+        yCheck = _node.gridY - 1;
+        if (xCheck >= 0 && xCheck < gridSizeY)
+        {
+            if (yCheck >= 0 && yCheck < gridSizeY)
+            {
+                neighborNodes.Add(grid[xCheck, yCheck]);
+            }
+        }
+
+        return neighborNodes;
     }
 
     public void SetChest()
@@ -98,6 +166,20 @@ public class RoomGrid : MonoBehaviour
                     print(desiredPosition);
                     dummyEnemy = Instantiate(enemy, desiredPosition, enemy.transform.rotation);
                     hasEnemy = true;
+                }
+            }
+        }
+    }
+
+    public void SetPathNodes()
+    {
+        foreach (RoomNode rn in tileNodes)
+        {
+            if (rn.isBlocked && !rn.containsChest)
+            {
+                for (int i = 0; i < moveTowardsPlayer.Length; i++)
+                {
+                    moveTowardsPlayer[i].allPathNodes.Add(rn);
                 }
             }
         }

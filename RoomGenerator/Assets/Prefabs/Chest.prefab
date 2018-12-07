@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 4133854019532600}
   - component: {fileID: 114579429292332164}
   - component: {fileID: 65357626244525126}
+  - component: {fileID: 65685438494610008}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Chest
@@ -504,11 +505,11 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246846140246218}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.11527176, y: 0.16795212, z: 0.1}
-  m_Center: {x: -0.0036187824, y: 0.07320306, z: 0}
+  m_Size: {x: 0.15544386, y: 0.16795212, z: 0.14002895}
+  m_Center: {x: -0.00029940158, y: 0.07320306, z: -0.0033955462}
 --- !u!65 &65488910968538690
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -521,6 +522,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65685438494610008
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246846140246218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09587689, y: 0.16795212, z: 0.096309796}
+  m_Center: {x: 0.00016766042, y: 0.07320306, z: -0.003965877}
 --- !u!65 &65755009246990968
 BoxCollider:
   m_ObjectHideFlags: 1

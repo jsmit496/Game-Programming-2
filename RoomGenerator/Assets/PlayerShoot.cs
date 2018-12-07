@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -10,15 +11,18 @@ public class PlayerShoot : MonoBehaviour
 
     public int numArrows = 20;
 
-	// Use this for initialization
-	void Start ()
+    private Text arrowCounter;
+
+    // Use this for initialization
+    void Start ()
     {
-		
+        arrowCounter = GameObject.FindGameObjectWithTag("ArrowCounter").GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        arrowCounter.text = numArrows.ToString();
         if (Input.GetKeyDown(KeyCode.Mouse0) && numArrows > 0)
         {
             Shoot();

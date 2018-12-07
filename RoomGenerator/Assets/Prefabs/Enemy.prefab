@@ -241,9 +241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b499b95fcbd1ff4398bdce3319dd084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPosition: {fileID: 0}
-  targetPosition: {fileID: 0}
+  startPosition: {fileID: 4373136225463602}
+  targetPosition: {fileID: 4607924740615472, guid: cb4fbdbc640968c43b4d8ace55521bc2,
+    type: 2}
   speed: 4
+  allPathNodes: []
 --- !u!136 &136027321957547068
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -12,6 +12,7 @@ TagManager:
   - Room
   - Enemy
   - Chest
+  - ArrowCounter
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,20 @@ public class RoomNode : MonoBehaviour
 
     public Vector3 position;
 
-    public Dictionary<string, Node> neighbors;
+    public RoomNode parent;
+
+    public int gCost;
+    public int hCost;
+
+    public int FCost
+    {
+        get
+        {
+            return gCost + hCost;
+        }
+    }
+
+    public List<RoomNode> neighbors;
 
     public RoomNode(bool _isBlocked, Vector3 _position, int _gridX, int _gridY)
     {

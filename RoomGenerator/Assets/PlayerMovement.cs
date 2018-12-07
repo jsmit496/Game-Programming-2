@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask detectMouse;
 
     private bool setCameraPosition = false;
+    private bool checkNewRoom = true;
     private Vector3 desiredPosition;
 
 	// Use this for initialization
@@ -68,20 +69,6 @@ public class PlayerMovement : MonoBehaviour
             newRotation.z = 0;
             transform.rotation = newRotation;
         }
-
-        /*
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hitInfo;
-        if (Physics.Raycast(ray, out hitInfo, detectMouse))
-        {
-            print(string.Format("hitInfo position: {0}; hitInfo rotation: {1}", hitInfo.transform.position, hitInfo.transform.rotation));
-            Vector3 targetDir = hitInfo.transform.position - transform.position;
-            Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed * Time.deltaTime, 0f);
-            Quaternion newRotation = Quaternion.LookRotation(newDir);
-            newRotation.x = 0;
-            newRotation.z = 0;
-            transform.rotation = newRotation;
-        }*/
     }
 
     void SetCameraPosition()
@@ -92,16 +79,26 @@ public class PlayerMovement : MonoBehaviour
             if (playerCamera.transform.position == desiredPosition)
             {
                 setCameraPosition = false;
+
             }
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.collider.tag == "Room")
+        if (collision.collider.tag == "Room" && checkNewRoom)
         {
             setCameraPosition = true;
             desiredPosition = new Vector3(collision.gameObject.transform.position.x, cameraDistanceY, collision.gameObject.transform.position.z);
+            checkNewRoom = false;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.tag == "Room")
+        {
+            checkNewRoom = true;
         }
     }
 }

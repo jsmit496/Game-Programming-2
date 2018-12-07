@@ -303,7 +303,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Damage.cs" />
     <Compile Include="Assets\GameController.cs" />
+    <Compile Include="Assets\GenerateChest.cs" />
+    <Compile Include="Assets\MoveTowardsPlayer.cs" />
+    <Compile Include="Assets\ObjectLife.cs" />
+    <Compile Include="Assets\PlayerInteraction.cs" />
     <Compile Include="Assets\PlayerMovement.cs" />
     <Compile Include="Assets\PlayerShoot.cs" />
     <Compile Include="Assets\Scripts\GenerateWalls.cs" />
@@ -311,6 +316,7 @@
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\RoomGrid.cs" />
     <Compile Include="Assets\Scripts\RoomNode.cs" />
+    <Compile Include="Assets\Stats.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
